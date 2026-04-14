@@ -6,11 +6,11 @@ import lombok.Data;
 @Data
 public class FolderRequest {
 
-    @NotBlank(message = "Folder name is required")
-    private String name;
+  @NotBlank(message = "Folder name is required")
+  private String name;
 
-    private String description;
+  private String description;
 
-    /** Leave null to create a root-level folder */
-    private String parentId;
+  /** Leave null to create a root-level folder */
+  private String parentId;
 }

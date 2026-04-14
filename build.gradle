@@ -2,6 +2,9 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '4.0.5'
     id 'io.spring.dependency-management' version '1.1.7'
+    id 'pmd'
+    id 'com.github.spotbugs' version '6.1.7'
+    id 'com.diffplug.spotless' version '7.0.3'
 }
 
 group = 'com.docmanagement'
@@ -37,4 +40,33 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+spotless {
+    java {
+        googleJavaFormat('1.27.0')
+        removeUnusedImports()
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
+}
+
+pmd {
+    toolVersion = '7.13.0'
+    ruleSets = []
+    ruleSetFiles = files('config/pmd/ruleset.xml')
+    consoleOutput = true
+}
+
+spotbugs {
+    toolVersion = '4.9.3'
+    effort = 'max'
+    reportLevel = 'medium'
+}
+
+tasks.withType(com.github.spotbugs.snom.SpotBugsTask).configureEach {
+    reports {
+        html.required = true
+        xml.required = false
+    }
 }

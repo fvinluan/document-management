@@ -8,12 +8,14 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class OpenApiConfig {
 
-    @Bean
-    public OpenAPI documentManagementOpenAPI() {
-        return new OpenAPI()
-                .info(new Info()
-                        .title("Document Management API")
-                        .description("REST API for document and folder management, including file upload/download via GridFS.")
-                        .version("1.0.0"));
-    }
+  @Bean
+  public OpenAPI documentManagementOpenAPI() {
+    return new OpenAPI()
+        .info(
+            new Info()
+                .title("Document Management API")
+                .description(
+                    "REST API for document and folder management, including file upload/download via GridFS.")
+                .version("1.0.0"));
+  }
 }
